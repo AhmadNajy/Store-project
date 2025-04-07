@@ -13,11 +13,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($datafromDB as $product)
+            @foreach ($datafromDB as $key => $product)
+            @php
+                if ($product !== null) {
+                    echo $product->Name;
+                }
+            @endphp
                 <tr>
-                    <th scope="row">{{ $product->id }}</th>
+                    <th scope="row">{{ ++$key }}</th>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->category }}</td>
+                    <td>{{ $product->Name}}</td>
                     <td>{{ $product->quantity }}</td>
                     <td>{{ $product->price }}</td>
                     <td>
@@ -37,6 +42,7 @@
             @endforeach
         </tbody>
     </table>
+    {{$datafromDB->links()}}
     {{-- add button  --}}
     <style>
         /* From Uiverse.io by catraco */

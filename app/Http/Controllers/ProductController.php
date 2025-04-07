@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         // $datafromDB = DB::table('tasks')->get();
-        $datafromDB = Product::all();
+        $datafromDB = Product::paginate(3);
         return view ('admin.products.index' , compact('datafromDB'));
     }
     public  function add () {
@@ -33,6 +38,7 @@ class ProductController extends Controller
 
         $product = new Product;
         $product->name = $proName;
+        $product->user_id = Auth::id();
         $product->category = $proCategory;
         $product->price = $proPrice;
         $product->quantity = $proQuantity;

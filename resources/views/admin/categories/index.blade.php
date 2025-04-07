@@ -6,24 +6,22 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">اسم الصنف</th>
-
                 <th scope="col">عمليات</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($datafromDB as $product )
+            @foreach ($datafromDB as $category )
             <tr>
-                <th scope="row">{{$product -> id}}</th>
-                <td>{{$product -> name}}</td>
-
+                <th scope="row">{{$category -> id}}</th>
+                <td>{{$category -> name}}</td>
                 <td>
-                    <form action="/deletCategory/{{$product->id}}" method="get" class="d-inline">
+                    <form action="/deletCategory/{{$category->id}}" method="get" class="d-inline">
                     <button type="submit" class="btn btn-danger">
                         <i class="fa fa-trash me-2"></i>حذف
                     </button>
                     </form>
                     <span>--</span>
-                    <form action="/editCategory/{{$product->id}}" method="get" class="d-inline">
+                    <form action="/editCategory/{{$category->id}}" method="get" class="d-inline">
                     <button type="submit" class="btn btn-info">
                         <i class="fa fa-trash me-2"></i>تعديل
                     </button>
